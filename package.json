@@ -2,10 +2,10 @@
   "name": "filmvisarna",
   "version": "1.0.0",
   "description": "Website for FilmVisarna AB made by Eduard, Kattia, Petar, Nishat, Christina and Aimah.",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
