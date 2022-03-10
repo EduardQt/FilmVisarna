@@ -11,6 +11,10 @@ app.get('/giftcard', function (req, res) {
     res.sendFile(path.join(__dirname, '../www/giftcard.html'));
 });
 
+app.get('/styles/giftcard.css', function (req, res) {
+    res.sendFile(path.join(__dirname, '../styles/giftcard.css'));
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
