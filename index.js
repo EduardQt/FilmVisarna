@@ -6,6 +6,11 @@ var fileStoreOptions = {};
 const express = require('express')
 const app = express();
 const port = 3000
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 'test123';
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
