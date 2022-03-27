@@ -1,46 +1,31 @@
-const express = require('express')
 const path = require('path');
-const app = express()
+
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
+var fileStoreOptions = {};
+const express = require('express')
+const app = express();
 const port = 3000
 
-app.use('/public', express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'www/index.html'));
-});
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-app.get('/home', function (req, res) {
-    res.sendFile(path.join(__dirname, 'www/index.html'));
-});
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+    secret: 'keyboard cat is everything we need!',
+    store: new FileStore(fileStoreOptions),
+}))
 
-app.get('/login', function (req, res) {
-    res.sendFile(path.join(__dirname, 'www/login.html'));
+app.use(function(req, res, next) {
+    res.locals.session = req.session;
+    next();
 });
-
-app.get('/giftcard', function (req, res) {
-    res.sendFile(path.join(__dirname, 'www/giftcard.html'));
-});
-
-app.get('/styles/giftcard.css', function (req, res) {
-    res.sendFile(path.join(__dirname, 'styles/giftcard.css'));
-});
-
-app.get('/img/banner.png', function (req, res) {
-    res.sendFile(path.join(__dirname, 'public/img/banner.png'));
-});
-
-// owl carousel
-app.get('/owl.carousel.css', function (req, res) {
-    res.sendFile(path.join(__dirname, 'node_modules/owlcarousel/owl-carousel/owl.carousel.css'));
-});
-
-app.get('/owl.theme.css', function (req, res) {
-    res.sendFile(path.join(__dirname, 'node_modules/owlcarousel/owl-carousel/owl.theme.css'));
-});
-
-app.get('/owl.carousel.min.js', function (req, res) {
-    res.sendFile(path.join(__dirname, 'node_modules/owlcarousel/owl-carousel/owl.carousel.min.js'));
-});
+const routes = require('./src/Routes');
+app.use('/', routes);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

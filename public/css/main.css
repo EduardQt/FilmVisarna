@@ -5,3 +5,42 @@
 .bg-color {
     background-color: var(--bs-body-bg);
 }
+
+.sub-nav {
+    background-color: #ce5511;
+}
+
+.sub-nav>div>div>a {
+    color: white;
+    text-decoration: none;
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+.sub-nav>div>div>a:hover {
+    background-color: #ea6114;
+}
+
+.sub-nav>div>div>a:active {
+    background-color: #bd4f11;
+}
+
+.btn-main {
+    color: #ea6114;
+    border-color: #ea6114;
+}
+
+.btn-main:hover {
+    color: #fff;
+    background-color: #ce5511;
+    border-color: #ce5511;
+}
+
+.btn-main:active {
+    color: #fff;
+    background-color: #bd4f11;
+    border-color: #bd4f11;
+}
