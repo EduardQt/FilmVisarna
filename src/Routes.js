@@ -28,7 +28,7 @@ router.post('/login', async function (req, res) {
         req.session.user = undefined;
     }
 
-    if (result)  {
+    if (result) {
         req.session.user = result;
         res.redirect('/index');
     } else {
@@ -38,15 +38,12 @@ router.post('/login', async function (req, res) {
 });
 
 router.get('/giftcard', function (req, res) {
-    res.sendFile(path.join(__dirname, 'www/giftcard.html'));
+    console.log(__dirname)
+    res.sendFile(path.join(__dirname, '../www/giftcard.html'));
 });
 
 router.get('/styles/giftcard.css', function (req, res) {
-    res.sendFile(path.join(__dirname, 'styles/giftcard.css'));
-});
-
-router.get('/img/banner.png', function (req, res) {
-    res.sendFile(path.join(__dirname, 'public/img/banner.png'));
+    res.sendFile(path.join(__dirname, '../styles/giftcard.css'));
 });
 
 // owl carousel
