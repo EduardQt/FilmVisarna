@@ -3,9 +3,13 @@ var router = express.Router();
 const path = require('path');
 
 const AuthController = require('./Auth/AuthController');
+const MovieController = require('./Movie/MovieController');
 
-router.get(['/', '/index', '/home'], function (req, res) {
-    res.render('index');
+router.get(['/', '/index', '/home'], async function (req, res) {
+    const result = await new MovieController().fetchAllMovies();
+    res.render('index', {
+        movies: result
+    });
 });
 
 router.get('/login', async function (req, res) {
