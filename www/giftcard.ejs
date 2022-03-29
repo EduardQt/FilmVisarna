@@ -162,37 +162,7 @@
                 <p class="text-center text-white border-top">&copy; CinemaHall @2022 </p>
         </footer>
     </div>
-    <script lang="javascript">
-        let fromName = "";
-        let toName = "";
-        function showBuyForm() {
-            let showForm = document.getElementById("buy-form");
-            showForm.removeAttribute("class", "invisible");
-            showForm.setAttribute("class", "visible");
-        }
-
-        document.getElementById("buyFormButton").addEventListener("click", function (event) {
-            event.preventDefault();
-            fromName = document.getElementById("name-from").value;
-            toName = document.getElementById("name-to").value;
-            code = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-            document.getElementById("random-code").innerHTML = `Your code is: ${code}`
-            // post to db here
-        });
-
-        function showRedeemForm() {
-            let showForm = document.getElementById("redeem-form");
-            showForm.removeAttribute("class", "invisible");
-            showForm.setAttribute("class", "visible");
-        }
-
-        document.getElementById("redeem-btn").addEventListener("click", function (event) {
-            event.preventDefault();
-            let cardCode = document.getElementById("code-field").value;
-            let cardCodeResponse = document.getElementById("code-redeem-field");
-            cardCodeResponse.innerText = "Your code has been redeemed!";
-        })
-
+    <script lang="javascript" src="Giftcard/giftcard.js">
     </script>
 </body>
 

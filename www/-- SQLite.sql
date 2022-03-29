@@ -1,0 +1,6 @@
+-- SQLite
+CREATE TABLE giftcard (
+code TEXT NOT NULL PRIMARY KEY,
+nameFrom TEXT NOT NULL,
+nameTo   TEXT NOT NULL
+);

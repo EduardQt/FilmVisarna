@@ -4,6 +4,7 @@ const path = require('path');
 
 const AuthController = require('./Auth/AuthController');
 const MovieController = require('./Movie/MovieController');
+const GiftcardController = require('./Giftcard/GiftcardController');
 
 router.get(['/', '/index', '/home'], async function (req, res) {
     const result = await new MovieController().fetchAllMovies();
@@ -14,6 +15,21 @@ router.get(['/', '/index', '/home'], async function (req, res) {
 
 router.get('/login', async function (req, res) {
     res.render('login');
+});
+
+router.post('/creategiftcard', async function (req, res) {
+    let card = req.body;
+    await new GiftcardController().createGiftCard(card.fromName, card.toName, card.code);
+    return res.status(200).json('Card created');
+});
+
+router.get('/fetchgiftcard', async function (req, res) {
+    let response = await new GiftcardController().readGiftCard(req.query.code);
+    return res.status(200).json(response);
+});
+
+router.get('/giftcard', async function (req, res) {
+    res.render('giftcard');
 });
 
 router.get('/logout', function (req, res) {
@@ -39,11 +55,6 @@ router.post('/login', async function (req, res) {
         req.session.user = undefined;
         res.render('login');
     }
-});
-
-router.get('/giftcard', function (req, res) {
-    console.log(__dirname)
-    res.sendFile(path.join(__dirname, '../www/giftcard.html'));
 });
 
 router.get('/styles/giftcard.css', function (req, res) {
