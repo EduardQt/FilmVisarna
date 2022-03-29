@@ -96,7 +96,7 @@
   h2{
     color: #ddd;
     padding-right: 15px;
-    margin-top: 40px;
+    margin-top: 50px;
     margin-left: 35px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 35px;
@@ -187,6 +187,8 @@
 
   }
 
+
+
   p{
      color: white;
      font-size: 15px;
@@ -195,7 +197,9 @@
      line-height: 1cm;
   }
 
-
+button{
+  margin-right: 40px;
+}
 
  label {
     display: block;
