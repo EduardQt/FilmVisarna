@@ -15,8 +15,6 @@
 </head>
 
 <body>
-<%- include('navigator.ejs'); %>
-
 <style>
     .sub-nav {
         background-color: #ce5511;
@@ -72,17 +70,8 @@
         height: 100%;
     }
 </style>
-<div class="sub-nav">
-    <div class="container">
-        <div class="row">
-            <a href="/giftcard">Gift Cards</a>
-            <a href="/tickets">Tickets</a>
-            <a href="#">Events</a>
-            <a href="#">About Us</a>
-        </div>
-    </div>
-</div>
 
+<%- include('navigator.ejs'); %>
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
