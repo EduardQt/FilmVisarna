@@ -38,6 +38,9 @@ router.get('/logout', function (req, res) {
     res.redirect('/index');
 });
 
+router.get('/tickets', async function (req, res) {
+    res.render('tickets');
+});
 router.post('/login', async function (req, res) {
     const email = req.body.email;
     const password = req.body.password;
@@ -60,6 +63,11 @@ router.post('/login', async function (req, res) {
 router.get('/styles/giftcard.css', function (req, res) {
     res.sendFile(path.join(__dirname, '../styles/giftcard.css'));
 });
+
+router.get('/styles/styletickets.css', function (req, res) {
+    res.sendFile(path.join(__dirname, '../styles/styletickets.css'));
+});
+
 
 // owl carousel
 router.get('/owl.carousel.css', function (req, res) {
