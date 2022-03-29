@@ -125,11 +125,30 @@
 
     <h2 class="text-white text-center">New movies</h2>
 </div>
+<% for (const movie of movies) { %>
+    <div class="modal fade" id="exampleModal-<%= movie.id %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <iframe width="100%" height="315"
+                        src="<%= movie.trailer_url %>">
+                </iframe>
+                <div class="p-4">
+                    <p class="fs-5"><%= movie.movie_title %></p>
+                    <p><%= movie.description %></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
 <div class="container">
     <div class="owl-carousel owl-theme">
         <% for (const movie of movies) {
         if (movie.state === 'NEW') { %>
-            <div class="item">
+            <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= movie.id %>">
                 <img src="<%= movie.image_url %>"
                      class="d-block w-100" alt="..." onclick="console.log('<%= movie.id %>')">
             </div>
@@ -144,8 +163,8 @@
 
         <h2 class="text-white text-center">All movies</h2>
         <div class="container">
-            <input type="date" id="date-picker" onchange="onDateChange(event)" />
-            <input type="number" id="age-picker" onchange="onAgeChange(event)" />
+            <input type="date" id="date-picker" onchange="onDateChange(event)"/>
+            <input type="number" id="age-picker" onchange="onAgeChange(event)"/>
             <div class="row imagetiles">
 
             </div>
@@ -249,7 +268,7 @@
                         continue;
                     }
 
-                    html += `<div class="image-entry">
+                    html += `<div class="image-entry"  data-bs-target="#exampleModal-${movie.id}">
                         <img src="${movie.image_url}" class="img-responsive">
                         </div>`;
                 }
@@ -276,7 +295,6 @@
                     }
                 }
             })</script>
-
 
 
 </body>
