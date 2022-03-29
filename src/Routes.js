@@ -17,6 +17,17 @@ router.get('/login', async function (req, res) {
     res.render('login');
 });
 
+router.get('/screenings', async function (req, res) {
+    if (req.session.user !== undefined) {
+        const result = await new MovieController().fetchAllMovies();
+        res.render('screenings', {
+            movies: result
+        });
+    } else {
+        res.render('login')
+    }
+});
+
 router.get(['/movie'], async function (req, res) {
     let movieId = req.query.movieId;
     const result = await new MovieController().fetchAllMovies();

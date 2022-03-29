@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenings</title>
+    <link type="text/css" rel="stylesheet" href="/css/main.css" media="all"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+<%- include('navigator.ejs'); %>
+
+<div id="movie-screenings" class="p-4">
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#Malmö" role="button" aria-expanded="false"
+           aria-controls="0">
+            Malmö
+        </a>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#Stockholm" role="button" aria-expanded="false"
+           aria-controls="1">
+            Stockholm
+        </a>
+    </p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script defer>
+    const movies = <%- JSON.stringify(movies) %>;
+    const theatres = [
+        {
+            id: 0,
+            name: 'Malmö'
+        },
+        {
+            id: 1,
+            name: 'Stockholm'
+        }
+    ];
+    const times = [
+        12, 14, 16, 18, 20, 22
+    ]
+
+    const weeks = 4;
+    const days = weeks * 7;
+
+    Date.prototype.addDays = function (days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
+    for (const theatre of theatres) {
+        let html = '';
+        html += `<div id="${theatre.name}" class="collapse">`;
+        html += `<h1 class="text-white">${theatre.name}</h1>`;
+
+        const date = new Date();
+        for (let day = 0; day < days; day++) {
+            date.setDate(date.getDate() + day);
+            const time = Math.round(date.getTime() / 1000);
+            const timeAsString = time.toString();
+            let timeToLetters = "";
+            for (let i = 0; i < timeAsString.length; i++) {
+                timeToLetters += String.fromCharCode(97 + parseInt(timeAsString.charAt(i)));
+            }
+
+            html += `<a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#${timeToLetters}" role="button" aria-expanded="false"
+           aria-controls="1">
+            ${date}
+        </a>`;
+
+            html += `<div id="${timeToLetters}" class="collapse">`
+            let index = 0;
+            for (let i = 0; i < 3; i++) {
+                for (const movie of movies) {
+                    const time = times[index];
+                    html += `<h6 class="text-white">${movie.movie_title} is shown at: ${time}:00</h6>`;
+                    index++;
+
+                    if (index === times.length) index = 0;
+                }
+            }
+            html += `</div>`
+        }
+        html += '</div>';
+        $("#movie-screenings").append(html);
+    }
+</script>
+
+</body>
+
+</html>
