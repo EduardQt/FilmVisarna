@@ -139,6 +139,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="/movie?movieId=<%= movie.id %>" class="btn btn-secondary">Go to movie</a>
                 </div>
             </div>
         </div>
@@ -150,7 +151,7 @@
         if (movie.state === 'NEW') { %>
             <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= movie.id %>">
                 <img src="<%= movie.image_url %>"
-                     class="d-block w-100" alt="..." onclick="console.log('<%= movie.id %>')">
+                     class="d-block w-100" alt="...">
             </div>
         <%
         }
@@ -268,7 +269,7 @@
                         continue;
                     }
 
-                    html += `<div class="image-entry"  data-bs-target="#exampleModal-${movie.id}">
+                    html += `<div class="image-entry" data-bs-toggle="modal" data-bs-target="#exampleModal-${movie.id}">
                         <img src="${movie.image_url}" class="img-responsive">
                         </div>`;
                 }

@@ -17,6 +17,21 @@ router.get('/login', async function (req, res) {
     res.render('login');
 });
 
+router.get(['/movie'], async function (req, res) {
+    let movieId = req.query.movieId;
+    const result = await new MovieController().fetchAllMovies();
+    let movieBase = null;
+    for (const movie of result) {
+        if (movie.id === parseInt(movieId)) {
+            movieBase = movie;
+        }
+    }
+
+    res.render('movie', {
+        movie: movieBase
+    });
+});
+
 router.post('/creategiftcard', async function (req, res) {
     let card = req.body;
     await new GiftcardController().createGiftCard(card.fromName, card.toName, card.code);
@@ -30,6 +45,10 @@ router.get('/fetchgiftcard', async function (req, res) {
 
 router.get('/giftcard', async function (req, res) {
     res.render('giftcard');
+});
+
+router.get('/booking', async function (req, res) {
+    res.render('booking');
 });
 
 router.get('/logout', function (req, res) {

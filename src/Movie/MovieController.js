@@ -12,7 +12,7 @@ class MovieController {
                 } else {
                     const movies = [];
                     for (const movie of rows) {
-                        movies.push(new Movie(movie.id, movie.movie_title, movie.trailer_url, movie.min_age, movie.release_date, movie.state, movie.image_url, movie.description));
+                        movies.push(new Movie(movie.id, movie.movie_title, movie.trailer_url, movie.min_age, movie.release_date, movie.state, movie.image_url, movie.description, movie.time_shown));
                     }
 
                     resolve(movies);

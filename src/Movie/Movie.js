@@ -1,5 +1,5 @@
 class Movie {
-    constructor(id, movie_title, trailer_url, min_age, release_date, state, image_url, description) {
+    constructor(id, movie_title, trailer_url, min_age, release_date, state, image_url, description, time_shown) {
         this.id = id;
         this.movie_title = movie_title;
         this.trailer_url = trailer_url;
@@ -8,6 +8,7 @@ class Movie {
         this.state = state;
         this.image_url = image_url;
         this.description = description;
+        this.time_shown = time_shown;
     }
 }
 
