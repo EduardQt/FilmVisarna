@@ -43,6 +43,11 @@ router.get(['/movie'], async function (req, res) {
     });
 });
 
+router.get(['/location'], async function (req, res) {
+
+    res.render('location');
+});
+
 router.post('/creategiftcard', async function (req, res) {
     let card = req.body;
     await new GiftcardController().createGiftCard(card.fromName, card.toName, card.code);

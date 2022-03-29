@@ -23,7 +23,7 @@
     .sub-nav > div > div > a {
         color: white;
         text-decoration: none;
-        width: 25%;
+        width: 50%;
         display: inline-block;
         text-align: center;
         padding: 15px;
@@ -60,7 +60,7 @@
     }
 
     .image-entry {
-        width: 25%;
+        width: 50%;
         height: 100px;
         padding: 2px;
     }
@@ -405,7 +405,7 @@
 
     console.log()
     if (alertTrigger) {
-        const value = JSON.stringify('<%- movie.movie_title %>');
+        const value = "<%- movie.movie_title %>";
         alertTrigger.addEventListener('click', function () {
             alert('You have succesfully booked your tickets for: ' + value + '!', 'success')
         })
